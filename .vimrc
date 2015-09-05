@@ -44,6 +44,11 @@ if has('gui_running')
 	set cursorline			" highlight current line
 endif
 
+" use bash in vim if fish is default shell
+if &shell =~# 'fish&'
+    set shell=bash
+endif
+
 
 " plugins trough Vundle
 filetype off
@@ -62,7 +67,7 @@ Plugin 'mxw/vim-jsx'						" jsx support (requires pangloss/vim-javascript)
 Plugin 'elixir-lang/vim-elixir'				" elixir syntax support
 Plugin 'Valloric/YouCompleteMe'             " autocomplete code
 Plugin 'marijnh/tern_for_vim'               " additional autocomplete for javascript
-
+Plugin 'dag/vim-fish'                       " syntax for fish files
 
 call vundle#end()
 filetype plugin indent on
@@ -94,4 +99,6 @@ let g:syntastic_enable_elixir_checker=1				" check elixir code
 " vim-jsx
 let g:jsx_ext_requires=0							" jsx highlight in .js files
 
+" activate syntax for fish files
+autocmd FileType fish compiler fish
 

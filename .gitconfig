@@ -1,0 +1,40 @@
+[user]
+    	email = alundgren82@gmail.com
+    	name = Andreas Lundgren
+
+[core]
+        editor = vim
+
+[alias]
+        co = checkout
+        cob = checkout -b
+
+        a = add
+        aa = add -A
+
+        cm = commit -m
+        cma = !git add -A && git commit -m
+        # caa takes current changes and add to previous commit
+        caa = commit --amend -C HEAD
+
+        s = status
+        ss = status -s
+        sl = !git status -s && git ls origin/master..HEAD
+
+        up = !git pull --rebase --prune && git checkout master
+        po = push -u origin
+        rb = !git fetch && git rebase
+
+        # pretty logs
+        ls = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short
+        ll = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short --numstat
+        lp = log origin/branch1..HEAD --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short
+
+[credential]
+	    helper = cache --timeout=3600
+
+[credential "https://github.com"]
+        username = Lundgren
+
+[push]
+    	default = simple
