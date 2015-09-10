@@ -37,6 +37,7 @@ set autoindent
 set expandtab		" tabs to spaces
 set tabstop=4		" tabs are 4 spaces wide
 set softtabstop=4	" tabs are 4 spaces wide when editing
+set shiftwidth=4
 
 " gvim specifics
 if has('gui_running')
@@ -44,11 +45,8 @@ if has('gui_running')
 	set cursorline			" highlight current line
 endif
 
-" use bash in vim if fish is default shell
-if &shell =~# 'fish&'
-    set shell=bash
-endif
-
+" use bash in vim as fish isn't supported
+set shell=bash
 
 " plugins trough Vundle
 filetype off
