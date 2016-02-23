@@ -5,7 +5,7 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 #Symlink files from git controlled config folder
 ln -s "$DIR/.vimrc" ~/
 ln -s "$DIR/.vim" ~/
-ln -s "$DIR/.Xauthority" ~/
+ln -s "$DIR/.Xresources" ~/
 ln -s "$DIR/i3/" ~/.config/
 
 #Install Vundle to handle vim plugins
