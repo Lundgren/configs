@@ -20,3 +20,10 @@ vim +PluginInstall +qall
 #Install ack (on debian systems) and rename to ack
 #sudo apt-get install ack-grep 
 #sudo dpkg-divert --local --divert /usr/bin/ack --rename --add /usr/bin/ack-grep 
+
+
+#Backup/restore installed packages through pacman
+#Backup:
+#  pacman -Qqe | grep -v "$(pacman -Qmq)" > arch.pkglist
+#Restore:
+#  pacman -S $(cat arch.pkglist)
