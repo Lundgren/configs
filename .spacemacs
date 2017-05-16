@@ -50,6 +50,7 @@ values."
      syntax-checking
      version-control
 
+     themes-megapack
      spotify
      xkcd
 
