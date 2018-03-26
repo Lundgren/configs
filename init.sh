@@ -3,19 +3,21 @@
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 #Symlink files from git controlled config folder
-ln -s "$DIR/.vimrc" ~/
-ln -s "$DIR/.vim" ~/
+#ln -s "$DIR/.vimrc" ~/
+#ln -s "$DIR/.vim" ~/
 ln -s "$DIR/.Xresources" ~/
+ln -s "$DIR/lock.sh" ~/.config/
 ln -s "$DIR/i3/" ~/.config/
+ln -s "$DIR/polybar/" ~/.config/
 
 #Install Vundle to handle vim plugins
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+#git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
 #Update plugins from .vimrc
-vim +PluginInstall +qall
+#vim +PluginInstall +qall
 
 #Compile YouCompleteMe plugin.
-(cd ~/.vim/bundle/YouCompleteMe; python install.py)
+#(cd ~/.vim/bundle/YouCompleteMe; python install.py)
 
 #Install ack (on debian systems) and rename to ack
 #sudo apt-get install ack-grep 
