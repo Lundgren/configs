@@ -18,7 +18,8 @@ exec --no-startup-id nm-applet
 exec_always --no-startup-id ~/.config/polybar/launch.sh
 
 #App launcher
-bindsym $mod+d exec rofi -show run
+bindsym $mod+d exec rofi -show drun #-modi run,drun,window
+exec --no-startup-id albert
 #bindsym $mod+d exec rofi -show run -lines 3 -eh 2 -width 100 -padding 420 -opacity "85" -bw 0 -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -hlbg "$bg-color" -hlfg "#9575cd" -font "Source Code Pro 18"
 
 #Lock computer
@@ -179,25 +180,10 @@ client.unfocused        $black  $black $white  $black  $black
 client.background       #ff0000
 
 
-
-#Hmm wont work...
+# dropdown terminal
 #TODO: Change to `
-bindsym $mod+u			[instance="dropdown"] scratchpad show; [instance="dropdown"] move position center
-
-
-# #---Dropdown/Scratchpad Windows---# #
-for_window [instance="dropdown"] floating enable
-for_window [instance="dropdown"] resize set 625 400
-for_window [instance="dropdown"] move scratchpad
-for_window [instance="dropdown"] border pixel 5
-# Runs the tmuxinit script, which searches for an earlier tmux instance,
-# otherwise starts a new one (to prevent multiple dropdown sessions).
-exec --no-startup-id urxvt -n dropdown
-exec_always --no-startup-id "tmux send-keys -t 0:0 'clear' Enter"
-
-
-exec --no-startup-id urxvt -name metask
-for_window [instance="metask"] floating enable;
-for_window [instance="metask"] move scratchpad; [instance="metask"] scratchpad show; move position center; resize set 900 600; move scratchpad
-bindsym $mod+t [instance="metask"] scratchpad show
+exec --no-startup-id urxvt -name dropdown
+for_window [instance="dropdown"] floating enable;
+for_window [instance="dropdown"] move scratchpad; [instance="medropdowntask"] scratchpad show; move position center; resize set 900 600; move scratchpad
+bindsym $mod+t [instance="dropdown"] scratchpad show
 
