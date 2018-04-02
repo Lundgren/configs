@@ -54,7 +54,8 @@ modules-left = i3 xwindow
 modules-center = 
 ;modules-right = filesystem xbacklight xkeyboard memory cpu battery temperature date powermenu
 ;modules-right = wlan xbacklight backlight-acpi xkeyboard memory cpu battery date powermenu
-modules-right = volume wlan xkeyboard battery date powermenu
+;modules-right = volume wlan xkeyboard battery date powermenu
+modules-right = volume xkeyboard battery date powermenu
 
 tray-position = right
 tray-padding = 2

@@ -8,12 +8,15 @@ antigen use oh-my-zsh
 # Bundles from the default repo (robbyrussell's oh-my-zsh).
 antigen bundle git
 antigen bundle adb
+antigen bundle z
 antigen bundle docker
 antigen bundle pip
 antigen bundle node
 antigen bundle npm
+antigen bundle extract
 antigen bundle autojump
 antigen bundle command-not-found
+antigen bundle colored-man-pages
 
 #antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-autosuggestions
