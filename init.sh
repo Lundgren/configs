@@ -9,6 +9,7 @@ ln -s "$DIR/.Xresources" ~/
 ln -s "$DIR/lock.sh" ~/.config/
 ln -s "$DIR/i3/" ~/.config/
 ln -s "$DIR/polybar/" ~/.config/
+ln -s "$DIR/.spacemacs" ~/.spacemacs
 
 #Install Vundle to handle vim plugins
 #git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
