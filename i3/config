@@ -18,12 +18,12 @@ exec --no-startup-id nm-applet
 exec_always --no-startup-id ~/.config/polybar/launch.sh
 
 #App launcher
-bindsym $mod+d exec rofi -show window -modi run,drun,window
+bindsym $mod+d exec rofi -show window
 exec --no-startup-id albert
-#bindsym $mod+d exec rofi -show run -lines 3 -eh 2 -width 100 -padding 420 -opacity "85" -bw 0 -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -hlbg "$bg-color" -hlfg "#9575cd" -font "Source Code Pro 18"
 
 #Lock computer
 bindsym $mod+Shift+x exec ~/.config/lock.sh
+exec_always xautolock -time 10 -locker "~/.config/lock.sh" &
 
 #Wallpaper
 exec_always --no-startup-id feh --bg-scale ~/.config/wall.jpg
@@ -35,8 +35,17 @@ exec "setxkbmap -option 'grp:alt_shift_toggle'"
 #mine
 bindsym $mod+n exec google-chrome
 bindsym $mod+shift+n exec google-chrome -incognito
-#bindsym $mod+e exec nautilus
+bindsym $mod+b exec nautilus
 
+# Printscreen
+bindsym Print exec scrot -e 'mv $f /tmp/ && pinta /tmp/$f'
+bindsym Mod1+Print exec scrot -s -e 'mv $f /tmp/ && pinta /tmp/$f'
+
+# Resize
+bindsym $mod+Shift+u resize shrink width 10 px or 10ppt
+bindsym $mod+Shift+i resize shrink height 10 px or 10 ppt
+bindsym $mod+Shift+o resize grow height 10 px or 10 ppt
+bindsym $mod+Shift+p resize grow width 10 px or 10 ppt
 
 # start a terminal
 bindsym $mod+Return exec i3-sensible-terminal
@@ -93,6 +102,17 @@ bindsym $mod+a focus parent
 
 # focus the child container
 #bindsym $mod+d focus child
+
+# Per Window Layouts
+for_window [window_type="dialog"] floating enable
+for_window [window_type="utility"] floating enable
+for_window [window_type="toolbar"] floating enable
+for_window [window_type="splash"] floating enable
+for_window [window_type="menu"] floating enable
+for_window [window_type="dropdown_menu"] floating enable
+for_window [window_type="popup_menu"] floating enable
+for_window [window_type="tooltip"] floating enable
+for_window [window_type="notification"] floating enable
 
 # switch to workspace
 bindsym $mod+1 workspace 1
@@ -182,8 +202,9 @@ client.background       #ff0000
 
 # dropdown terminal
 #TODO: Change to `
-exec --no-startup-id urxvt -name dropdown
+exec --no-startup-id i3-sensible-terminal -name dropdown
 for_window [instance="dropdown"] floating enable;
 for_window [instance="dropdown"] move scratchpad; [instance="medropdowntask"] scratchpad show; move position center; resize set 900 600; move scratchpad
 bindsym $mod+t [instance="dropdown"] scratchpad show
+# bindsym $mod+apostrophe [instance="dropdown"] scratchpad show
 
