@@ -35,12 +35,30 @@ antigen apply
 ZSH_THEME="avit"
 HIST_STAMPS="yyyy-mm-dd"
 
+# Jump words with CTRL + [left / right]
+bindkey '^[[1;5D' backward-word
+bindkey '^[[1;5C' forward-word
+
+# Delete words with CTRL + del
+bindkey '^[[3;5~' kill-word
 
 alias ..="cd .."
 alias cd..="cd .."
 alias ll="ls -lFh"
 alias la="ls -lAFh"
 alias lt="ls -ltFh"
-alias grep="grep --color=auto"
+# alias grep="grep --color=auto"
 alias mkdir="mkdir -p -v"
 alias hist="history | grep"
+
+alias cat='bat'
+alias top='htop'
+alias grep='rg'
+
+alias preview="fzf --preview 'bat --color \"always\" {}'"
+# add support for ctrl+o to open selected file in VS Code
+export FZF_DEFAULT_OPTS="--bind='ctrl-o:execute(code {})+abort'"
+
+
+# fzf for fuzzy history Ctrl+r
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
