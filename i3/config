@@ -38,6 +38,7 @@ bindsym $mod+shift+n exec google-chrome -incognito
 bindsym $mod+b exec nautilus
 
 # Printscreen
+# TODO: Look at https://github.com/lupoDharkael/flameshot
 bindsym Print exec scrot -e 'mv $f /tmp/ && pinta /tmp/$f'
 bindsym Mod1+Print exec scrot -s -e 'mv $f /tmp/ && pinta /tmp/$f'
 

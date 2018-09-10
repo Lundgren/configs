@@ -1,4 +1,5 @@
 export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
+export PATH=$PATH:$HOME/.local/kitty.app/bin
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:/opt/protoc-3.6.0/bin
@@ -62,3 +63,9 @@ export FZF_DEFAULT_OPTS="--bind='ctrl-o:execute(code {})+abort'"
 
 # fzf for fuzzy history Ctrl+r
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Kitty things
+autoload -Uz compinit
+compinit
+# Completion for kitty
+kitty + complete setup zsh | source /dev/stdin
