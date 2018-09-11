@@ -15,6 +15,7 @@ antigen bundle git
 antigen bundle adb
 antigen bundle z
 antigen bundle docker
+# antigen bundle kubectl
 antigen bundle pip
 antigen bundle node
 antigen bundle npm
@@ -36,6 +37,10 @@ antigen apply
 ZSH_THEME="avit"
 HIST_STAMPS="yyyy-mm-dd"
 
+if [ $commands[kubectl] ]; then
+  source <(kubectl completion zsh)
+fi
+
 # Jump words with CTRL + [left / right]
 bindkey '^[[1;5D' backward-word
 bindkey '^[[1;5C' forward-word
@@ -52,7 +57,7 @@ alias lt="ls -ltFh"
 alias mkdir="mkdir -p -v"
 alias hist="history | grep"
 
-alias cat='bat'
+# alias cat='bat'
 alias top='htop'
 alias grep='rg'
 
