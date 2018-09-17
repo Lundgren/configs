@@ -6,6 +6,8 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 #ln -s "$DIR/.vimrc" ~/
 #ln -s "$DIR/.vim" ~/
 ln -s "$DIR/.Xresources" ~/
+ln -s "$DIR/.zshrc" ~/
+ln -s "$DIR/.fzf.zsh" ~/
 ln -s "$DIR/lock.sh" ~/.config/
 ln -s "$DIR/i3/" ~/.config/
 ln -s "$DIR/polybar/" ~/.config/
