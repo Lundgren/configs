@@ -31,9 +31,8 @@ antigen bundle autojump
 antigen bundle command-not-found
 antigen bundle colored-man-pages
 
-#Hmm https://github.com/b4b4r07/enhancd
 antigen bundle b4b4r07/enhancd
-
+antigen bundle ytet5uy4/fzf-widgets
 antigen bundle wfxr/forgit # ga for interactive git add
 antigen bundle unixorn/autoupdate-antigen.zshplugin
 antigen bundle hlissner/zsh-autopair
@@ -61,6 +60,9 @@ bindkey '^[[1;5C' forward-word
 bindkey '^[[3;5~' kill-word
 bindkey '^H' backward-kill-word 
 
+bindkey '^g' fzf-git-add-files
+bindkey '^p'  fzf-select-widget
+
 alias ..="cd .."
 alias cd..="cd .."
 alias ll="ls -lFh"
@@ -74,17 +76,20 @@ alias hist="history | grep"
 alias top='htop'
 alias grep='rg'
 
+# fzf for fuzzy history Ctrl+r
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
 alias preview="fzf --preview 'bat --color \"always\" {}'"
 # add support for ctrl+o to open selected file in VS Code
 export FZF_DEFAULT_OPTS="--bind='ctrl-o:execute(code {})+abort'"
 
-
-# fzf for fuzzy history Ctrl+r
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 if [ $commands[fd] ]; then
   export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
 fi
 
+# Enhanced backward search on cd ...
+# export ENHANCD_DOT_ARG=...
+export ENHANCD_DOT_SHOW_FULLPATH=1
 
 # Kitty things
 autoload -Uz compinit
