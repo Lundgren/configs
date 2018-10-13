@@ -92,10 +92,12 @@ fi
 export ENHANCD_DOT_SHOW_FULLPATH=1
 
 # Kitty things
-autoload -Uz compinit
-compinit
-# Completion for kitty
-kitty + complete setup zsh | source /dev/stdin
+if [ -x "$(command -v kitty)" ]; then
+  autoload -Uz compinit
+  compinit
+  # Completion for kitty
+  kitty + complete setup zsh | source /dev/stdin
+fi
 
 # Needed for enhancd
 source .antigen/bundles/b4b4r07/enhancd/init.sh
