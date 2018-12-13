@@ -3,6 +3,7 @@ export PATH=$PATH:$HOME/.local/kitty.app/bin
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:/opt/protoc-3.6.0/bin
+export PATH=$PATH:$HOME/anaconda3/bin
 
 source ~/.antigen/antigen.zsh
 source ~/.local.zshrc
@@ -101,3 +102,6 @@ fi
 
 # Needed for enhancd
 source .antigen/bundles/b4b4r07/enhancd/init.sh
+
+# Anaconda
+source ~/anaconda3/etc/profile.d/conda.sh
