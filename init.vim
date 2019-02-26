@@ -46,3 +46,8 @@ set expandtab		" Tabs are converted to spaces
 set shiftwidth=4	" Autoindent size
 set autoindent		" Automatically indent new lines
 set number		" Line numbers
+
+" Better search
+ set hlsearch
+ set incsearch
+ set smartcase
