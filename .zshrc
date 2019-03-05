@@ -61,6 +61,11 @@ bindkey '^[[1;5C' forward-word
 bindkey '^[[3;5~' kill-word
 bindkey '^H' backward-kill-word 
 
+# Move up, down and forward with jkl
+bindkey -s '^k' '^[OA'
+bindkey -s '^j' '^[OB'
+bindkey -s '^l' '^[OC'
+
 bindkey '^g' fzf-git-add-files
 bindkey '^p'  fzf-select-widget
 
