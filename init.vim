@@ -39,6 +39,7 @@ nnoremap <leader>q :q<cr>
 map <C-n> :NERDTreeToggle<CR>
 
 " FZF (https://github.com/junegunn/fzf.vim#commands)
+" <c-t>/<c-x>/<c-v> - Open file in new tab/split/vertical
 nnoremap <c-p> :Files<cr>
 nnoremap <leader>fg :GFiles?<cr>
 nnoremap <leader>ff :Rg<cr>
