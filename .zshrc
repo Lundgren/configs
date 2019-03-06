@@ -82,6 +82,10 @@ alias hist="history | grep"
 alias top='htop'
 alias grep='rg'
 
+# NeoVim by default
+alias vim='nvim'
+alias vi='nvim'
+
 # fzf for fuzzy history Ctrl+r
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
