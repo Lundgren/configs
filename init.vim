@@ -23,6 +23,13 @@ Plug 'dylanaraps/root.vim'
 " Themes
 Plug 'rafi/awesome-vim-colorschemes'
 
+" Completions
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'deoplete-plugins/deoplete-go', { 'do': 'make'} " Run `go get -u github.com/stamblerre/gocode`
+
+" Golang
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+
 call plug#end()
 
 " Fzf search using ripgrep: hidden directories, case-insensitive unless
@@ -37,6 +44,10 @@ inoremap jj <esc>
 nnoremap <leader>w :w<cr>
 nnoremap <leader>q :q<cr>
 map <C-n> :NERDTreeToggle<CR>
+
+" Move through quickfix
+map <C-n> :cnext<CR>
+map <C-m> :cprevious<CR>
 
 " FZF (https://github.com/junegunn/fzf.vim#commands)
 " <c-t>/<c-x>/<c-v> - Open file in new tab/split/vertical
@@ -61,7 +72,10 @@ set softtabstop=4
 set expandtab		" Tabs are converted to spaces
 set shiftwidth=4	" Autoindent size
 set autoindent		" Automatically indent new lines
-set number		" Line numbers
+set relativenumber		" Line numbers
+set cursorline      " Highlight current line
+set title           " Let vim set the terminal title
+set autowrite       " Save on :make like commands
 
 " Better search
 set hlsearch
@@ -73,3 +87,33 @@ set nomousehide
 
 " Automatically change working directory (root.vim)
 let g:root#auto=1
+
+" Use deoplete
+let g:deoplete#enable_at_startup = 1
+
+"" Go things
+let g:go_highlight_build_constraints = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_types = 1
+let g:go_auto_sameids = 1
+
+" Faster update time for vim-go
+let g:go_updatetime = 100
+
+" Automatically import things
+let g:go_fmt_command = "goimports"
+
+" File type in airline
+let g:go_auto_type_info = 1
+
+" Error and warning signs.
+let g:ale_sign_error = '⤫'
+let g:ale_sign_warning = '⚠'
+
+" Enable integration with airline.
+let g:airline#extensions#ale#enabled = 1
