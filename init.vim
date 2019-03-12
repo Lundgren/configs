@@ -12,7 +12,8 @@ Plug 'sheerun/vim-polyglot'
 Plug 'w0rp/ale'
 
 " Powerline
-Plug 'itchyny/lightline.vim'
+" Plug 'itchyny/lightline.vim'
+Plug 'vim-airline/vim-airline'
 
 " NerdTree
 Plug 'scrooloose/nerdtree'
@@ -28,11 +29,19 @@ Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
 " Auto pair brackets and similar
-Plug 'jiangmiao/auto-pairs'
+" Plug 'jiangmiao/auto-pairs'
+Plug 'Raimondi/delimitMate'
 
 " Completions
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'deoplete-plugins/deoplete-go', { 'do': 'make'} " Run `go get -u github.com/stamblerre/gocode`
+" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" Plug 'deoplete-plugins/deoplete-go', { 'do': 'make'} " Run `go get -u github.com/stamblerre/gocode`
+" Plug 'tenfyzhong/CompleteParameter.vim'
+Plug 'ncm2/ncm2'
+Plug 'roxma/nvim-yarp'
+Plug 'ncm2/ncm2-bufword'
+Plug 'ncm2/ncm2-path'
+Plug 'ncm2/ncm2-go'
+Plug 'ncm2/ncm2-ultisnips'
 
 " Golang
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
@@ -48,13 +57,15 @@ call plug#end()
 let mapleader = "\<Space>"
 
 inoremap jj <esc>
+inoremap <C-l> <Right>
 nnoremap <leader>w :w<cr>
 nnoremap <leader>q :q<cr>
+nnoremap <leader>vr :source $MYVIMRC<CR>
 map <C-n> :NERDTreeToggle<CR>
 
 " Move through quickfix
-map <C-n> :cnext<CR>
-map <C-m> :cprevious<CR>
+" map <C-n> :cnext<CR>
+" map <C-m> :cprevious<CR>
 
 " FZF (https://github.com/junegunn/fzf.vim#commands)
 " <c-t>/<c-x>/<c-v> - Open file in new tab/split/vertical
@@ -64,6 +75,12 @@ nnoremap <leader>ff :Rg<cr>
 nnoremap <leader>fb :Buffers<cr>
 nnoremap <leader>fl :Lines<cr>
 nnoremap <leader>fc :Maps<cr>
+
+" Move between windows with <c-hjkl>
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
 
 set nocompatible
 syntax on
@@ -78,13 +95,17 @@ set hlsearch		" Highlight search results
 set tabstop=4		" Spaces per tab
 set softtabstop=4
 set expandtab		" Tabs are converted to spaces
-set shiftwidth=4	" Autoindent size
+set shiftwidth=4	" Auto indent size
 set autoindent		" Automatically indent new lines
 set number relativenumber		" Line numbers
 set cursorline      " Highlight current line
 set title           " Let vim set the terminal title
 set autowrite       " Save on :make like commands
 set clipboard+=unnamedplus  " System clipboard
+set spelllang=en    " Enable spelling z= for suggestions
+set spell
+set splitbelow      " Better split
+set splitright
 
 " Better search
 set hlsearch
@@ -98,12 +119,22 @@ set nomousehide
 let g:root#auto=1
 
 " Use deoplete
-let g:deoplete#enable_at_startup = 1
+" let g:deoplete#enable_at_startup = 1
+" call deoplete#custom#source('_', 'converters', ['converter_auto_paren'])
+autocmd BufEnter * call ncm2#enable_for_buffer()
+set completeopt=noinsert,menuone,noselect
 
 " Control with c-j, c-k & c-l
 inoremap <expr><C-j> pumvisible() ? "\<C-n>" : "\<Down>"
 inoremap <expr><C-k> pumvisible() ? "\<C-p>" : "\<Up>"
-inoremap <expr><C-l> pumvisible() ? "\<C-y>" : "\<C-l>"
+inoremap <expr><C-l> pumvisible() ? "\<C-y>" : "\<Right>"
+inoremap <silent> <expr> <CR> ncm2_ultisnips#expand_or("\<CR>", 'n')
+" inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+" inoremap <expr><CR>  pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+"set completeopt+=noinsert
+"set completeopt+=noselect
+"set completeopt-=preview
 
 "" Go things
 let g:go_highlight_build_constraints = 1
@@ -123,11 +154,13 @@ let g:go_updatetime = 100
 let g:go_fmt_command = "goimports"
 
 " File type in airline
-let g:go_auto_type_info = 1
+" let g:go_auto_type_info = 1
 
 " Error and warning signs.
 let g:ale_sign_error = '⤫'
 let g:ale_sign_warning = '⚠'
+let g:ale_set_loclist = 0
+let g:ale_set_quickfix = 1
 
 " Enable integration with airline.
 let g:airline#extensions#ale#enabled = 1
@@ -143,5 +176,18 @@ function! s:build_go_files()
 endfunction
 
 autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
-autocmd FileType go nmap <leader>gt <Plug>(go-test-func)
+autocmd FileType go nmap <leader>t <Plug>(go-test)
+autocmd FileType go nmap <leader>i <Plug>(go-info)
+autocmd FileType go nmap <leader>gf <Plug>(go-test-func)
 autocmd FileType go nmap <leader>gc <Plug>(go-coverage-toggle)
+autocmd Filetype go nmap <leader>ga <Plug>(go-alternate-edit)
+autocmd Filetype go nmap <leader>gah <Plug>(go-alternate-split)
+autocmd Filetype go nmap <leader>gav <Plug>(go-alternate-vertical)
+autocmd FileType go nmap <leader>gt :GoDeclsDir<cr>
+autocmd FileType go nmap <leader>gc <Plug>(go-coverage-toggle)
+autocmd FileType go nmap <leader>gd <Plug>(go-def)
+autocmd FileType go nmap <leader>gdv <Plug>(go-def-vertical)
+autocmd FileType go nmap <leader>gdh <Plug>(go-def-split))
+
+
+
