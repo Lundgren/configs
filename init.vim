@@ -24,6 +24,9 @@ Plug 'dylanaraps/root.vim'
 " Workspace plugin
 Plug 'thaerkh/vim-workspace'
 
+" Tmux/split navigation with <c-[hjkl]>
+Plug 'christoomey/vim-tmux-navigator'
+
 " Themes
 Plug 'rafi/awesome-vim-colorschemes'
 
@@ -45,7 +48,7 @@ Plug 'ncm2/ncm2-bufword'
 Plug 'ncm2/ncm2-path'
 Plug 'ncm2/ncm2-go'
 Plug 'ncm2/ncm2-ultisnips'
-Plug 'ncm2/float-preview.nvim'
+" Plug 'ncm2/float-preview.nvim'
 Plug 'ncm2/ncm2-markdown-subscope'
 
 " Golang
@@ -85,11 +88,11 @@ nnoremap <leader>fb :Buffers<cr>
 nnoremap <leader>fl :Lines<cr>
 nnoremap <leader>fc :Maps<cr>
 
-" Move between windows with <c-hjkl>
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
+" Move between windows with <c-hjkl> (handle by plugin now)
+" nnoremap <C-h> <C-w>h
+" nnoremap <C-j> <C-w>j
+" nnoremap <C-k> <C-w>k
+" nnoremap <C-l> <C-w>l
 
 set nocompatible
 syntax on
