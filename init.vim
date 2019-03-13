@@ -21,6 +21,9 @@ Plug 'scrooloose/nerdtree'
 " Change working directory to folder with .git
 Plug 'dylanaraps/root.vim'
 
+" Workspace plugin
+Plug 'thaerkh/vim-workspace'
+
 " Themes
 Plug 'rafi/awesome-vim-colorschemes'
 
@@ -45,6 +48,10 @@ Plug 'ncm2/ncm2-ultisnips'
 
 " Golang
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+
+" Markdown
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
 
 call plug#end()
 
@@ -136,6 +143,16 @@ inoremap <silent> <expr> <CR> ncm2_ultisnips#expand_or("\<CR>", 'n')
 "set completeopt+=noselect
 "set completeopt-=preview
 
+
+""" Ale 
+let g:ale_sign_column_always = 1 " Make sure the sign column always have room for error signs
+
+
+""" Workspace
+let g:workspace_session_directory = $HOME . '/.local/share/nvim/sessions/' " Keep sessions outside of the project path
+let g:workspace_autosave = 0 " Don't auto save
+
+
 "" Go things
 let g:go_highlight_build_constraints = 1
 let g:go_highlight_extra_types = 1
@@ -190,4 +207,5 @@ autocmd FileType go nmap <leader>gdv <Plug>(go-def-vertical)
 autocmd FileType go nmap <leader>gdh <Plug>(go-def-split))
 
 
-
+" Markdown
+let g:vim_markdown_folding_disabled = 1 " Disable folding

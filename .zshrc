@@ -8,13 +8,6 @@ export PATH=$PATH:$HOME/anaconda3/bin
 source ~/.antigen/antigen.zsh
 source ~/.local.zshrc
 
-# Worth looking at?
-# https://github.com/ytet5uy4/fzf-widgets
-# https://github.com/b4b4r07/enhancd - Ctrl+T used by fzf
-# https://github.com/jonmosco/kube-ps1
-# https://github.com/wting/autojump
-# https://github.com/mollifier/anyframe/blob/master/anyframe-functions/sources/anyframe-source-git-status
-
 # Load the oh-my-zsh's library.
 antigen use oh-my-zsh
 
@@ -23,7 +16,7 @@ antigen bundle git
 antigen bundle adb
 antigen bundle z
 antigen bundle docker
-# antigen bundle kubectl
+# antigen bundle kubectl # Why won't you work?
 antigen bundle pip
 antigen bundle node
 antigen bundle npm
@@ -49,9 +42,7 @@ antigen apply
 ZSH_THEME="avit"
 HIST_STAMPS="yyyy-mm-dd"
 
-if [ $commands[kubectl] ]; then
-  source <(kubectl completion zsh)
-fi
+bindkey -v
 
 # Jump words with CTRL + [left / right]
 bindkey '^[[1;5D' backward-word
@@ -114,3 +105,21 @@ source .antigen/bundles/b4b4r07/enhancd/init.sh
 
 # Anaconda
 source ~/anaconda3/etc/profile.d/conda.sh
+
+# Make ^Z toggle between ^Z and fg
+function ctrlz() {
+    if [[ $#BUFFER == 0 ]]; then
+        fg >/dev/null 2>&1 && zle redisplay
+    else
+        zle push-input
+    fi
+}
+
+zle -N ctrlz
+bindkey '^Z' ctrlz
+
+# kube completions
+if [ $commands[kubectl] ]; then
+    echo "Working"
+  source <(kubectl completion zsh)
+fi
