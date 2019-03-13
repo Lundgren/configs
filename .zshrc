@@ -16,7 +16,6 @@ antigen bundle git
 antigen bundle adb
 antigen bundle z
 antigen bundle docker
-# antigen bundle kubectl # Why won't you work?
 antigen bundle pip
 antigen bundle node
 antigen bundle npm
@@ -24,6 +23,7 @@ antigen bundle extract
 antigen bundle autojump
 antigen bundle command-not-found
 antigen bundle colored-man-pages
+antigen bundle vi-mode # Only used to trigger MODE in theme, solvable in other ways
 
 antigen bundle b4b4r07/enhancd
 antigen bundle ytet5uy4/fzf-widgets
@@ -120,6 +120,5 @@ bindkey '^Z' ctrlz
 
 # kube completions
 if [ $commands[kubectl] ]; then
-    echo "Working"
   source <(kubectl completion zsh)
 fi
