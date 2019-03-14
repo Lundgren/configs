@@ -25,7 +25,7 @@ Plug 'dylanaraps/root.vim'
 Plug 'thaerkh/vim-workspace'
 
 " Tmux/split navigation with <c-[hjkl]>
-Plug 'christoomey/vim-tmux-navigator'
+" Plug 'christoomey/vim-tmux-navigator'
 
 " Themes
 Plug 'rafi/awesome-vim-colorschemes'
@@ -35,8 +35,8 @@ Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
 " Auto pair brackets and similar
-" Plug 'jiangmiao/auto-pairs'
-Plug 'Raimondi/delimitMate'
+Plug 'jiangmiao/auto-pairs'
+" Plug 'Raimondi/delimitMate'
 
 " Completions
 " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -63,8 +63,7 @@ call plug#end()
 " Fzf search using ripgrep: hidden directories, case-insensitive unless
 " capital letter in pattern, ignore .git (ripgrep respect .gitignore by
 " default)
-" export FZF_DEFAULT_COMMAND='rg --files --hidden --smartcase --glob "!.git/*"'
-
+" export FZF_DEFAULT_COMMAND='rg --files --hidden --smart-case --glob "!.git/*"'
 
 let mapleader = "\<Space>"
 
@@ -88,11 +87,11 @@ nnoremap <leader>fb :Buffers<cr>
 nnoremap <leader>fl :Lines<cr>
 nnoremap <leader>fc :Maps<cr>
 
-" Move between windows with <c-hjkl> (handle by plugin now)
-" nnoremap <C-h> <C-w>h
-" nnoremap <C-j> <C-w>j
-" nnoremap <C-k> <C-w>k
-" nnoremap <C-l> <C-w>l
+" Move between windows with <c-hjkl>
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
 
 set nocompatible
 syntax on
@@ -127,6 +126,9 @@ set smartcase
 " Helps with cursor disappear?
 set nomousehide
 
+" Move undo dirs away from the project
+set undodir=~/.local/share/nvim/undo/
+
 " Automatically change working directory (root.vim)
 let g:root#auto=1
 
@@ -156,6 +158,12 @@ let g:ale_sign_column_always = 1 " Make sure the sign column always have room fo
 """ Workspace
 let g:workspace_session_directory = $HOME . '/.local/share/nvim/sessions/' " Keep sessions outside of the project path
 let g:workspace_autosave = 0 " Don't auto save
+
+
+""" Auto-pair
+let g:AutoPairsMapCR = 0 " Doesn't work with ncm2 (github.com/ncm2/ncm2/issues/129)
+inoremap <silent> <expr> <CR> ncm2_ultisnips#expand_or("\<CR>\<C-R>=AutoPairsReturn()<CR>", 'n')
+
 
 
 "" Go things

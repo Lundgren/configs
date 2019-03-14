@@ -86,6 +86,8 @@ export FZF_DEFAULT_OPTS="--bind='ctrl-o:execute(code {})+abort'"
 
 if [ $commands[fd] ]; then
   export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
+elif [ $commands[rg] ]; then
+  export FZF_DEFAULT_COMMAND='rg --files --hidden --smart-case --glob "!.git/*"'
 fi
 
 # Enhanced backward search on cd ...
@@ -101,7 +103,7 @@ if [ -x "$(command -v kitty)" ]; then
 fi
 
 # Needed for enhancd
-source .antigen/bundles/b4b4r07/enhancd/init.sh
+source ~/.antigen/bundles/b4b4r07/enhancd/init.sh
 
 # Anaconda
 source ~/anaconda3/etc/profile.d/conda.sh
