@@ -29,6 +29,7 @@ Plug 'thaerkh/vim-workspace'
 
 " Themes
 Plug 'rafi/awesome-vim-colorschemes'
+Plug 'morhetz/gruvbox'
 
 " Snippets
 Plug 'SirVer/ultisnips'
@@ -96,7 +97,11 @@ nnoremap <C-l> <C-w>l
 set nocompatible
 syntax on
 set termguicolors
-colorscheme molokai
+" colorscheme molokai
+let g:gruvbox_italic=1
+colorscheme gruvbox
+let g:airline_theme='gruvbox'
+
 set guifont=DejaVu\ Sans\ Mono
 
 set showmatch		" Show matching brackets
