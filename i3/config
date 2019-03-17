@@ -1,10 +1,13 @@
 set $mod Mod4
-set $term --no-startup-id st
+# set $term i3-sensible-terminal
+set $term kitty
 
 #font pango:monospace 8
 #font pango:DejaVu Sans Mono 8
-font pango:terminal 10
-font pango:Source Code Pro 10
+#font pango:Source Code Pro 10
+# Font size 0 will hide the title bar, but still leave a small space useful for indication of active window
+font pango:monospace 0
+new_window pixel 3
 
 floating_modifier $mod
 
@@ -28,7 +31,7 @@ exec_always xautolock -time 10 -locker "~/.config/lock.sh" &
 #Wallpaper
 exec_always --no-startup-id feh --bg-scale ~/.config/wall.jpg
 
-#Toggle keyboard lang with Alt+Shift (manually through setxkbmap -layout se). Map ctrl to Caps Lock
+#Toggle keyboard lang with Ctrl+LWin+Menu (manually through setxkbmap -layout se). Map ctrl to Caps Lock
 exec "setxkbmap -layout us,se"
 exec "setxkbmap -option 'grp:lctrl_lwin_rctrl_menu'"
 exec "setxkbmap -option 'ctrl:nocaps'"
@@ -50,8 +53,8 @@ bindsym $mod+Shift+o resize grow height 10 px or 10 ppt
 bindsym $mod+Shift+p resize grow width 10 px or 10 ppt
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
-bindsym $mod+Shift+Return exec i3-sensible-terminal -e tmux
+bindsym $mod+Return exec $term 
+bindsym $mod+Shift+Return exec $term -e tmux
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -174,17 +177,6 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
-#bar {
-#        status_command i3status
-#}
-
-#client.focused          #002b36 #586e75 #fdf6e3 #268bd2
-#client.focused_inactive #002b36 #073642 #839496 #073642
-#client.unfocused        #002b36 #073642 #839496 #073642
-#client.urgent           #002b36 #dc322f #fdf6e3 #002b36
-
 # colors
 set $black 	           #272822
 set $white             #FFFFFF
@@ -201,6 +193,25 @@ client.focused_inactive $black  $black $blue   $black  $black
 client.unfocused        $black  $black $white  $black  $black
 
 client.background       #ff0000
+
+
+# Color scheme (Gruvbox dark)
+set $color_normal_white  #a89984
+set $color_bright_white  #ebdbb2
+set $color_normal_gray   #222222
+set $color_bright_gray   #3c3836
+set $color_bright_yellow #d79921
+set $color_normal_black  #282828
+set $color_unused        #ff0000
+
+# Colors                  border                 background             text                   indicator       child_border
+client.focused            $color_bright_gray     $color_bright_white    $color_bright_white    $color_unused   $color_normal_white
+client.focused            $color_bright_gray     $color_bright_gray     $color_bright_white    $color_unused   $color_normal_white
+client.focused_inactive   $color_bright_gray     $color_bright_gray     $color_bright_white    $color_unused   $color_normal_black
+client.unfocused          $color_normal_gray     $color_normal_gray     $color_normal_white    $color_unused   $color_normal_black
+client.urgent             $color_bright_yellow   $color_bright_yellow   $color_normal_black    $color_unused   $color_unused
+client.placeholder        $color_unused          $color_normal_black    $color_unused          $color_unused   $color_unused
+
 
 
 # dropdown terminal

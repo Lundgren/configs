@@ -50,8 +50,8 @@ font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
 font-2 = siji:pixelsize=10;1
 font-3 = FontAwesome:style=Regular:pixelsize=10;1
 
-modules-left = i3 xwindow
-modules-center = 
+modules-left = i3 
+modules-center = xwindow
 ;modules-right = filesystem xbacklight xkeyboard memory cpu battery temperature date powermenu
 ;modules-right = wlan xbacklight backlight-acpi xkeyboard memory cpu battery date powermenu
 ;modules-right = volume wlan xkeyboard battery date powermenu
@@ -78,7 +78,7 @@ cursor-scroll = ns-resize
 
 [module/xwindow]
 type = internal/xwindow
-label = %title:0:30:...%
+label = %title:0:100:...%
 
 [module/xkeyboard]
 type = internal/xkeyboard

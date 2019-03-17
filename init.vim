@@ -1,18 +1,13 @@
-
 call plug#begin('~/.local/share/nvim/plugged')
 
 " Fzf
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
-" Language pack
-Plug 'sheerun/vim-polyglot'
-
 " Linting etc
 Plug 'w0rp/ale'
 
 " Powerline
-" Plug 'itchyny/lightline.vim'
 Plug 'vim-airline/vim-airline'
 
 " NerdTree
@@ -47,24 +42,22 @@ Plug 'ncm2/ncm2'
 Plug 'roxma/nvim-yarp'
 Plug 'ncm2/ncm2-bufword'
 Plug 'ncm2/ncm2-path'
-Plug 'ncm2/ncm2-go'
+"Plug 'ncm2/ncm2-go'
 Plug 'ncm2/ncm2-ultisnips'
 " Plug 'ncm2/float-preview.nvim'
 Plug 'ncm2/ncm2-markdown-subscope'
 
 " Golang
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'fatih/vim-go'
 
 " Markdown
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
 
-call plug#end()
+" Language pack
+Plug 'sheerun/vim-polyglot'
 
-" Fzf search using ripgrep: hidden directories, case-insensitive unless
-" capital letter in pattern, ignore .git (ripgrep respect .gitignore by
-" default)
-" export FZF_DEFAULT_COMMAND='rg --files --hidden --smart-case --glob "!.git/*"'
+call plug#end()
 
 let mapleader = "\<Space>"
 
@@ -122,6 +115,7 @@ set spelllang=en    " Enable spelling z= for suggestions
 set spell
 set splitbelow      " Better split
 set splitright
+set scrolloff=5     " Always leave empty lines above/below cursor when scrolling
 
 " Better search
 set hlsearch
@@ -151,13 +145,21 @@ inoremap <silent> <expr> <CR> ncm2_ultisnips#expand_or("\<CR>", 'n')
 " inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 " inoremap <expr><CR>  pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
-"set completeopt+=noinsert
-"set completeopt+=noselect
-"set completeopt-=preview
+
+""" Airline
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#formatter = 'default'
 
 
 """ Ale 
 let g:ale_sign_column_always = 1 " Make sure the sign column always have room for error signs
+let g:airline#extensions#ale#enabled = 1
+
+" Error and warning signs.
+let g:ale_sign_error = '⤫'
+let g:ale_sign_warning = '⚠'
+let g:ale_set_loclist = 0
+let g:ale_set_quickfix = 1
 
 
 """ Workspace
@@ -170,16 +172,20 @@ let g:AutoPairsMapCR = 0 " Doesn't work with ncm2 (github.com/ncm2/ncm2/issues/1
 inoremap <silent> <expr> <CR> ncm2_ultisnips#expand_or("\<CR>\<C-R>=AutoPairsReturn()<CR>", 'n')
 
 
-
-"" Go things
+""" Vim-go
 let g:go_highlight_build_constraints = 1
 let g:go_highlight_extra_types = 1
 let g:go_highlight_fields = 1
 let g:go_highlight_functions = 1
+let g:go_highlight_function_parameters = 0
+let g:go_highlight_function_calls = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_structs = 1
 let g:go_highlight_types = 1
+let g:go_highlight_generate_tags = 1
+let g:go_highlight_variable_declarations = 1
+let g:go_highlight_variable_assignments = 0
 let g:go_auto_sameids = 1
 
 " Faster update time for vim-go
@@ -191,14 +197,6 @@ let g:go_fmt_command = "goimports"
 " File type in airline
 " let g:go_auto_type_info = 1
 
-" Error and warning signs.
-let g:ale_sign_error = '⤫'
-let g:ale_sign_warning = '⚠'
-let g:ale_set_loclist = 0
-let g:ale_set_quickfix = 1
-
-" Enable integration with airline.
-let g:airline#extensions#ale#enabled = 1
 
 " run :GoBuild or :GoTestCompile based on the go file
 function! s:build_go_files()
