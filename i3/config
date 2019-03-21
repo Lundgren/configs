@@ -32,9 +32,9 @@ exec_always xautolock -time 10 -locker "~/.config/lock.sh" &
 exec_always --no-startup-id feh --bg-scale ~/.config/wall.jpg
 
 #Toggle keyboard lang with Ctrl+LWin+Menu (manually through setxkbmap -layout se). Map ctrl to Caps Lock
-exec "setxkbmap -layout us,se"
-exec "setxkbmap -option 'grp:lctrl_lwin_rctrl_menu'"
-exec "setxkbmap -option 'ctrl:nocaps'"
+exec_always "setxkbmap -layout us,se"
+exec_always "setxkbmap -option 'grp:lctrl_lwin_rctrl_menu'"
+exec_always "setxkbmap -option 'ctrl:nocaps'"
 
 #mine
 bindsym $mod+n exec google-chrome

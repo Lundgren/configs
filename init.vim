@@ -19,6 +19,15 @@ Plug 'dylanaraps/root.vim'
 " Workspace plugin
 Plug 'thaerkh/vim-workspace'
 
+" Extra mappings with [ & ]
+Plug 'tpope/vim-unimpaired'
+
+" Git plugins
+Plug 'tpope/vim-fugitive'
+
+" Easy motion
+Plug 'easymotion/vim-easymotion'
+
 " Tmux/split navigation with <c-[hjkl]>
 " Plug 'christoomey/vim-tmux-navigator'
 
@@ -171,6 +180,24 @@ let g:workspace_autosave = 0 " Don't auto save
 let g:AutoPairsMapCR = 0 " Doesn't work with ncm2 (github.com/ncm2/ncm2/issues/129)
 inoremap <silent> <expr> <CR> ncm2_ultisnips#expand_or("\<CR>\<C-R>=AutoPairsReturn()<CR>", 'n')
 
+""" Easymotion
+let g:EasyMotion_do_mapping = 0 " Disable default mappings
+
+" Jump to anywhere you want with minimal keystrokes, with just one key binding.
+" `s{char}{label}`
+nmap s <Plug>(easymotion-overwin-f)
+" or
+" `s{char}{char}{label}`
+" Need one more keystroke, but on average, it may be more comfortable.
+" nmap s <Plug>(easymotion-overwin-f2)
+
+" Turn on case insensitive feature
+let g:EasyMotion_smartcase = 1
+
+" JK motions: Line motions
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)
+
 
 """ Vim-go
 let g:go_highlight_build_constraints = 1
@@ -193,6 +220,9 @@ let g:go_updatetime = 100
 
 " Automatically import things
 let g:go_fmt_command = "goimports"
+
+" camelCase for annotations
+let g:go_addtags_transform = "camelcase"
 
 " File type in airline
 " let g:go_auto_type_info = 1
