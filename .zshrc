@@ -26,7 +26,7 @@ antigen bundle wfxr/forgit # ga for interactive git add
 antigen bundle unixorn/autoupdate-antigen.zshplugin
 antigen bundle hlissner/zsh-autopair
 antigen bundle zsh-users/zsh-autosuggestions
-antigen bundle zdharma/fast-syntax-highlighting
+antigen bundle zdharma-continuum/fast-syntax-highlighting
 
 # Load the theme.
 antigen theme avit
@@ -38,6 +38,19 @@ ZSH_THEME="avit"
 HIST_STAMPS="yyyy-mm-dd"
 
 bindkey -v
+
+# start typing + [Up-Arrow] - fuzzy find history forward
+if [[ "${terminfo[kcuu1]}" != "" ]]; then
+    autoload -U up-line-or-beginning-search
+    zle -N up-line-or-beginning-search
+    bindkey "${terminfo[kcuu1]}" up-line-or-beginning-search
+fi
+# start typing + [Down-Arrow] - fuzzy find history backward
+if [[ "${terminfo[kcud1]}" != "" ]]; then
+    autoload -U down-line-or-beginning-search
+    zle -N down-line-or-beginning-search
+    bindkey "${terminfo[kcud1]}" down-line-or-beginning-search
+fi
 
 # Jump words with CTRL + [left / right]
 bindkey '^[[1;5D' backward-word
