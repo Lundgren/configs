@@ -11,8 +11,8 @@ ln -s "$DIR/.fzf.zsh" ~/
 ln -s "$DIR/lock.sh" ~/.config/
 ln -s "$DIR/i3/" ~/.config/
 ln -s "$DIR/polybar/" ~/.config/
-ln -s "$DIR/.spacemacs" ~/.spacemacs
-ln -s "$DIR/dunst" ~/.config/
+#ln -s "$DIR/.spacemacs" ~/.spacemacs
+#ln -s "$DIR/dunst" ~/.config/
 
 #Install Vundle to handle vim plugins
 #git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
