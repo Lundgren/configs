@@ -73,7 +73,8 @@ alias vim='nvim'
 alias vi='nvim'
 
 # fzf for fuzzy history Ctrl+r
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f ~/configs/fzf-completion.zsh ] && source ~/configs/fzf-completion.zsh
+[ -f ~/configs/fzf-key-bindings.zsh ] && source ~/configs/fzf-key-bindings.zsh
 
 alias preview="fzf --preview 'bat --color \"always\" {}'"
 # add support for ctrl+o to open selected file in VS Code
@@ -99,9 +100,6 @@ fi
 
 # Needed for enhancd
 source ~/.antigen/bundles/b4b4r07/enhancd/init.sh
-
-# Anaconda
-source ~/anaconda3/etc/profile.d/conda.sh
 
 # Make ^Z toggle between ^Z and fg
 function ctrlz() {
