@@ -30,7 +30,8 @@ bindsym $mod+Shift+x exec ~/.config/lock.sh
 exec_always xautolock -time 10 -locker "~/.config/lock.sh" &
 
 #Wallpaper
-exec_always --no-startup-id feh --bg-scale ~/.config/wall.jpg
+# exec_always --no-startup-id feh --bg-scale ~/.config/wall.jpg
+exec --no-startup-id ~/configs/set_wallpaper.sh
 
 #Toggle keyboard lang with Alt+Shift (manually through setxkbmap -layout se). Map ctrl to Caps Lock
 exec_always "setxkbmap -layout us,se"
