@@ -26,7 +26,7 @@ antigen bundle wfxr/forgit # ga for interactive git add
 antigen bundle unixorn/autoupdate-antigen.zshplugin
 antigen bundle hlissner/zsh-autopair
 antigen bundle zsh-users/zsh-autosuggestions
-antigen bundle zdharma/fast-syntax-highlighting
+antigen bundle zdharma-continuum/fast-syntax-highlighting
 
 # Load the theme.
 antigen theme avit

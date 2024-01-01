@@ -14,6 +14,9 @@ ln -s "$DIR/polybar/" ~/.config/
 #ln -s "$DIR/.spacemacs" ~/.spacemacs
 #ln -s "$DIR/dunst" ~/.config/
 
+mkdir ~/.config/kitty
+ln -s "$DIR/kitty/kitty.conf" ~/.config/kitty/kitty.conf
+
 #Install Vundle to handle vim plugins
 #git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
