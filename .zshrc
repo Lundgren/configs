@@ -1,9 +1,5 @@
-export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
+export PATH=$PATH:$HOME/bin:$HOME/.local/bin:/usr/local/bin
 export PATH=$PATH:$HOME/.local/kitty.app/bin
-export GOPATH=$HOME/go
-export PATH=$PATH:$GOPATH/bin
-export PATH=$PATH:/opt/protoc-3.6.0/bin
-export PATH=$PATH:$HOME/anaconda3/bin
 
 source ~/.antigen/antigen.zsh
 source ~/.local.zshrc
@@ -13,7 +9,6 @@ antigen use oh-my-zsh
 
 # Bundles from the default repo (robbyrussell's oh-my-zsh).
 antigen bundle git
-antigen bundle adb
 antigen bundle z
 antigen bundle docker
 antigen bundle pip

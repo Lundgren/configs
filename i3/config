@@ -11,6 +11,7 @@ new_window pixel 3
 
 floating_modifier $mod
 
+
 #Composite manager
 exec --no-startup-id compton --xrender-sync-fence
 
@@ -22,7 +23,7 @@ exec_always --no-startup-id ~/.config/polybar/launch.sh
 
 #App launcher
 bindsym $mod+d exec rofi -show window
-exec --no-startup-id albert
+exec --no-startup-id ulauncher --no-window-shadow
 
 #Lock computer
 bindsym $mod+Shift+x exec ~/.config/lock.sh
@@ -31,10 +32,11 @@ exec_always xautolock -time 10 -locker "~/.config/lock.sh" &
 #Wallpaper
 exec_always --no-startup-id feh --bg-scale ~/.config/wall.jpg
 
-#Toggle keyboard lang with Ctrl+LWin+Menu (manually through setxkbmap -layout se). Map ctrl to Caps Lock
+#Toggle keyboard lang with Alt+Shift (manually through setxkbmap -layout se). Map ctrl to Caps Lock
 exec_always "setxkbmap -layout us,se"
-exec_always "setxkbmap -option 'grp:lctrl_lwin_rctrl_menu'"
-exec_always "setxkbmap -option 'ctrl:nocaps'"
+exec_always "setxkbmap -option 'grp:alt_shift_toggle'"
+exec_always "setxkbmap -option 'ctrl:nocaps'" # Disable Caps-Lock
+exec_always "setxkbmap -option 'numpad:mac'" # Numpad is always numbers (never arrows)
 
 #mine
 bindsym $mod+n exec google-chrome
@@ -42,9 +44,11 @@ bindsym $mod+shift+n exec google-chrome -incognito
 bindsym $mod+b exec nautilus
 
 # Printscreen
-# TODO: Look at https://github.com/lupoDharkael/flameshot
-bindsym Print exec scrot -e 'mv $f /tmp/ && pinta /tmp/$f'
-bindsym Mod1+Print exec scrot -s -e 'mv $f /tmp/ && pinta /tmp/$f'
+bindsym Print exec flameshot gui
+
+# Move a window to the scratchpad and toggle it using Win+t
+bindsym $mod+shift+t move scratchpad
+bindsym $mod+t scratchpad show
 
 # Resize
 bindsym $mod+Shift+u resize shrink width 10 px or 10ppt
@@ -104,7 +108,7 @@ bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
 
 # focus the parent container
-bindsym $mod+a focus parent
+#bindsym $mod+a focus parent
 
 # focus the child container
 #bindsym $mod+d focus child
@@ -211,14 +215,3 @@ client.focused_inactive   $color_bright_gray     $color_bright_gray     $color_b
 client.unfocused          $color_normal_gray     $color_normal_gray     $color_normal_white    $color_unused   $color_normal_black
 client.urgent             $color_bright_yellow   $color_bright_yellow   $color_normal_black    $color_unused   $color_unused
 client.placeholder        $color_unused          $color_normal_black    $color_unused          $color_unused   $color_unused
-
-
-
-# dropdown terminal
-#TODO: Change to `
-exec --no-startup-id i3-sensible-terminal -name dropdown
-for_window [instance="dropdown"] floating enable;
-for_window [instance="dropdown"] move scratchpad; [instance="medropdowntask"] scratchpad show; move position center; resize set 900 600; move scratchpad
-bindsym $mod+t [instance="dropdown"] scratchpad show
-# bindsym $mod+apostrophe [instance="dropdown"] scratchpad show
-
