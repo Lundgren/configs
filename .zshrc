@@ -8,7 +8,7 @@ source ~/.local.zshrc
 antigen use oh-my-zsh
 
 # Bundles from the default repo (robbyrussell's oh-my-zsh).
-antigen bundle git
+# antigen bundle git
 antigen bundle z
 antigen bundle docker
 antigen bundle pip
@@ -20,6 +20,7 @@ antigen bundle command-not-found
 antigen bundle colored-man-pages
 antigen bundle vi-mode # Only used to trigger MODE in theme, solvable in other ways
 
+antigen bundle Aloxaf/fzf-tab
 antigen bundle b4b4r07/enhancd
 antigen bundle ytet5uy4/fzf-widgets
 antigen bundle wfxr/forgit # ga for interactive git add
@@ -36,6 +37,10 @@ antigen apply
 
 ZSH_THEME="avit"
 HIST_STAMPS="yyyy-mm-dd"
+
+# morhetz/gruvbox
+export FZF_DEFAULT_OPTS='--color=bg+:#3c3836,bg:#32302f,spinner:#fb4934,hl:#928374,fg:#ebdbb2,header:#928374,info:#8ec07c,pointer:#fb4934,marker:#fb4934,fg+:#ebdbb2,prompt:#fb4934,hl+:#fb4934'
+export BAT_THEME="gruvbox-dark"
 
 bindkey -v
 
@@ -57,7 +62,7 @@ bindkey '^[[1;5D' backward-word
 bindkey '^[[1;5C' forward-word
 
 # Delete words with CTRL + [del / backspace] - find key code with Ctrl+v & Ctrl+backspace
-bindkey '^[[3;5~' kill-word
+bindkey '5~' kill-word
 bindkey '^H' backward-kill-word 
 
 # Move up, down and forward with jkl
