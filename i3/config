@@ -33,11 +33,8 @@ exec_always xautolock -time 10 -locker "~/.config/lock.sh" &
 # exec_always --no-startup-id feh --bg-scale ~/.config/wall.jpg
 exec --no-startup-id ~/configs/set_wallpaper.sh
 
-#Toggle keyboard lang with Alt+Shift (manually through setxkbmap -layout se). Map ctrl to Caps Lock
-exec_always "setxkbmap -layout us,se"
-exec_always "setxkbmap -option 'grp:alt_shift_toggle'"
-exec_always "setxkbmap -option 'ctrl:nocaps'" # Disable Caps-Lock
-exec_always "setxkbmap -option 'numpad:mac'" # Numpad is always numbers (never arrows)
+#Toggle keyboard lang with Alt+Shift (manually through setxkbmap -layout se). Map ctrl to Caps Lock and numpad to numbers
+exec_always --no-startup-id setxkbmap -layout "us,se" -option "grp:alt_shift_toggle,ctrl:nocaps,numpad:mac"
 
 #mine
 bindsym $mod+n exec google-chrome
